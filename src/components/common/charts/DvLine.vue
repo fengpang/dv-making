@@ -8,6 +8,7 @@
 // import Config from './mixins/Config'
 
 export default {
+  name: 'DvLine',
   props: {
     dashed: String,
     color: {
@@ -198,7 +199,3 @@ export default {
   // mixins: [Config]
 }
 </script>
-
-<style>
-
-</style>

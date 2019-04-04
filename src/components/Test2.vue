@@ -9,13 +9,23 @@
         <el-form-item label="页面高" prop="name">
           <el-input v-model="template.height"></el-input>
         </el-form-item>
-        <el-button @click="addComponent('Grid')">添加栅格</el-button>
+      <draggable
+        :list="rows"
+        :group="{ name: 'people', pull: 'clone', put: false }"
+        :clone="deepCoy"
+        ghost-class="ghost">
+          <el-button>添加栅格</el-button>
+      </draggable>
         <el-button @click="dialogVisible = true">查看数据</el-button>
       </el-form>
     </el-col>
 
     <!-- 主体 -->
     <el-col :span="16" class="view" :style="{width: `${template.width}px`, height: `${template.height}px`}">
+      <draggable
+        :list="template.components"
+        group="people"
+        ghost-class="ghost">
       <div
         v-for="(item, index) in template.components"
         :key="index"
@@ -34,6 +44,7 @@
             <i class="el-icon-success success-icon" @click="selctRow(item)"></i>
           </div>
       </div>
+      </draggable>
     </el-col>
 
     <!-- 栅格配置 -->
@@ -73,6 +84,9 @@
           <el-form-item label="url" prop="name">
             <el-input v-model="currentItem.url" placeholder="接口地址"></el-input>
           </el-form-item>
+          <el-form-item label="标题" prop="name">
+            <el-input v-model="currentItem.title" placeholder="模块标题"></el-input>
+          </el-form-item>
           <el-form-item label="图表配置" prop="name">
             <el-select v-model="currentItem.componnet" placeholder="请选择">
               <el-option
@@ -100,13 +114,9 @@
     <el-col :span="4">
       <draggable
         :list="list"
-        class="list-group"
-        :disabled="!enabled"
-        ghost-class="ghost"
-        @start="dragging = true"
-        @end="dragging = false"
-      >
-              <div
+        group="people"
+        ghost-class="ghost">
+        <div
           class="list-group-item"
           v-for="element in list"
           :key="element.name"
@@ -119,7 +129,6 @@
 </template>
 
 <script>
-import Custom from './common/charts/Custom'
 import Grid from './Grid'
 import Draggable from 'vuedraggable'
 
@@ -133,7 +142,8 @@ export default {
         components: []
       },
       options: [
-        {label: '柱状图', value: 'Custom'}
+        {label: '柱状图', value: 'Custom'},
+        {label: '折线图', value: 'DvLine'}
       ],
       currentId: 0,
       currentItem: {},
@@ -142,24 +152,16 @@ export default {
         { name: 'Joao', id: 1 },
         { name: 'Jean', id: 2 }
       ],
-      dragging: false,
-      enabled: true
+      rows: [{
+        type: 'row',
+        dis: 0,
+        height: 50,
+        name: 'Grid',
+        columns: [{span: 12, type: 'col'}, {span: 12, type: 'col'}]
+      }]
     }
   },
   methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    },
     addComponent (component) {
       this.template.components.push({
         type: 'row',
@@ -181,10 +183,12 @@ export default {
     },
     selctRow (row, index) {
       this.currentItem = row
+    },
+    deepCoy (item) {
+      return JSON.parse(JSON.stringify(item))
     }
   },
   components: {
-    Custom,
     Draggable,
     Grid
   }

@@ -7,8 +7,13 @@ import charts from 'vue-echarts'
 import 'echarts'
 import 'element-ui/lib/theme-chalk/index.css'
 import element from 'element-ui'
+import allCharts from './components/common/charts'
 
 Vue.component('chart', charts)
+
+allCharts.forEach(element => {
+  Vue.component(element.name, element)
+})
 
 Vue.use(element)
 

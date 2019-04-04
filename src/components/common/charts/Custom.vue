@@ -9,6 +9,7 @@
 var data = []
 var categories = ['categoryA', 'categoryB', 'categoryC']
 export default {
+  name: 'Custom',
   computed: {
     options () {
       data = [
@@ -129,10 +130,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .chart {
-    width: 100% !important;
-    height: 100% !important;
-  }
-</style>
