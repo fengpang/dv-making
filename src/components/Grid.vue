@@ -1,0 +1,86 @@
+<template>
+  <div>
+    <el-row class="row" :style="{height: `${height}px`, marginBottom: `${rowDis}px`}">
+      <el-col class="cols"
+        v-for="(item, index) in columns"
+        :key="index"
+        @click.native="slectCol(item)"
+        :style="{paddingLeft: `${+dis/2}px`, paddingRight: `${+dis/2}px`, backgroundColor: item.bc}"
+        :span="+item.span">
+        <div class="item" :class="{active: currentItem === item}">
+          <componnet
+            v-if="item.componnet"
+            :is="item.componnet"
+            style="width: 100%; height: 100%;"></componnet>
+          <h4 v-else>哇咔咔</h4>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+import Custom from './common/charts/Custom'
+export default {
+  props: {
+    columns: {
+      default () {
+        return [{span: 12, type: 'col'}, {span: 12, type: 'col'}]
+      },
+      type: Array
+    },
+    dis: {
+      default () {
+        return 0
+      },
+      type: [String, Number]
+    },
+    rowDis: {
+      default () {
+        return 5
+      },
+      type: [String, Number]
+    },
+    height: {
+      default () {
+        return 50
+      },
+      type: [String, Number]
+    },
+    componnets: Array,
+    currentItem: Object
+  },
+  methods: {
+    slectCol (item) {
+      this.$emit('active', item)
+    }
+  },
+  components: {
+    Custom
+  }
+}
+</script>
+
+<style lang="less" scoped>
+  .item {
+    border: 1px dashed rgb(17, 17, 17);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .cols {
+    height: 100%;
+    &:hover {
+      .item {
+        background-color: rgba(109, 197, 131, 0.4);
+        border: 2px solid rgb(236, 74, 74);
+      }
+    }
+  }
+  .active {
+    background: #6dc583;
+  }
+</style>
