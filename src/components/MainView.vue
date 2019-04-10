@@ -17,6 +17,7 @@
           :columns="item.columns"
           :currentItem="currentItem"
           :height="item.height"
+          :rowDis="item.rowDis"
           :dis="item.dis"></component>
           <div class="icons">
             <i class="el-icon-delete delete-icon" @click="delCol(template.components, item)"></i>
@@ -44,6 +45,10 @@ export default {
     },
     selctRow (row, index) {
       this.$emit('currentChange', row)
+    },
+    delCol (target, item) {
+      let index = target.indexOf(item)
+      this.$delete(target, index)
     }
   },
   model: {

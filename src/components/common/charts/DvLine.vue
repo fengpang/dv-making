@@ -5,12 +5,12 @@
 </template>
 
 <script>
-// import Config from './mixins/Config'
 
 export default {
   name: 'DvLine',
   props: {
-    dashed: String,
+    // dashed: String,
+    // url: String,
     color: {
       type: String,
       default () {
@@ -152,9 +152,6 @@ export default {
         grid: this.grid,
         series: result.series
       }
-      // Object.assign(options.xAxis, this.chartConfig.xAxis)
-      // delete this.chartConfig.xAxis
-      // Object.assign(options, this.chartConfig)
       return options
     }
   },
@@ -196,6 +193,5 @@ export default {
       return {xData, series}
     }
   }
-  // mixins: [Config]
 }
 </script>

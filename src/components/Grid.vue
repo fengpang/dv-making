@@ -8,10 +8,10 @@
         :style="{paddingLeft: `${+dis/2}px`, paddingRight: `${+dis/2}px`, backgroundColor: item.bc}"
         :span="+item.span">
         <div class="item" :class="{active: currentItem === item}">
-          <componnet
-            v-if="item.componnet"
-            :is="item.componnet"
-            style="width: 100%; height: 100%;"></componnet>
+          <component
+            v-if="item.component"
+            :is="item.component"
+            style="width: 100%; height: 100%;"></component>
           <h4 v-else>哇咔咔</h4>
         </div>
       </el-col>
@@ -25,7 +25,7 @@ export default {
   props: {
     columns: {
       default () {
-        return [{span: 12, type: 'col'}, {span: 12, type: 'col'}]
+        return [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]
       },
       type: Array
     },
@@ -37,7 +37,7 @@ export default {
     },
     rowDis: {
       default () {
-        return 5
+        return 0
       },
       type: [String, Number]
     },
@@ -47,7 +47,7 @@ export default {
       },
       type: [String, Number]
     },
-    componnets: Array,
+    components: Array,
     currentItem: Object
   },
   methods: {
