@@ -11,12 +11,12 @@ export default {
   props: {
     // dashed: String,
     // url: String,
-    color: {
-      type: String,
-      default () {
-        return 'red'
-      }
-    },
+    // color: {
+    //   type: String,
+    //   default () {
+    //     return 'red'
+    //   }
+    // },
     unit: {
       type: String,
       default () {
@@ -31,7 +31,7 @@ export default {
         }
       }
     },
-    settings: {
+    config: {
       type: Object,
       default () {
         return {}
@@ -50,9 +50,10 @@ export default {
     },
     options () {
       let result = this.dealData(this.data)
+      console.log(this.dataroomVisible)
       let options = {
-        color: this.color,
-        legend: Object.assign({}, this.legendData),
+        color: this.config.color || 'pink',
+        legend: Object.assign({show: this.config.legendVisible}, this.legendData),
         tooltip: {
           trigger: 'axis',
           formatter: `{c}${this.unit}`
@@ -60,7 +61,7 @@ export default {
         dataZoom: [
           {
             type: 'slider',
-            show: true,
+            show: this.config.dataroomVisible || false,
             xAxisIndex: [0],
             start: 1,
             end: 100,
@@ -96,7 +97,7 @@ export default {
           axisLabel: {
             padding: [0, 0, 0, 0],
             color: '#fff',
-            fontSize: 18,
+            fontSize: this.config.fontSize || 12,
             interval: 0
           },
           splitLine: {
@@ -118,11 +119,11 @@ export default {
         },
         yAxis: {
           type: 'value',
-          name: this.unit,
+          name: this.config.unit || '万元',
           nameGap: this.nameGap,
           nameTextStyle: {
             color: '#fff',
-            fontSize: 18
+            fontSize: this.config.fontSize || 12
           },
           axisLine: {
             lineStyle: {
@@ -139,7 +140,7 @@ export default {
           },
           axisLabel: {
             color: '#fff',
-            fontSize: 18
+            fontSize: this.config.fontSize || 12
           },
           axisTick: {
             show: false,
@@ -159,7 +160,7 @@ export default {
     dealData (data) {
       let xData = []
       let series = []
-      let opacity = this.areaStyle ? 1 : 0
+      // let opacity = this.areaStyle ? 1 : 0
       let areaStyle = this.areaStyle || ['rgba(193,58,226,0.53)', 'rgba(109,79,239,0.53)']
       for (let key in data) {
         let itemData = data[key].map(({value}) => value)
@@ -184,7 +185,7 @@ export default {
                 offset: 1, color: areaStyle[1] // 100% 处的颜色
               }]
             },
-            opacity: opacity
+            opacity: 1
           },
           animationDelay: 500,
           lineStyle: {type: this.dashed}

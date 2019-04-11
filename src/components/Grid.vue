@@ -11,6 +11,7 @@
           <component
             v-if="item.component"
             :is="item.component"
+            :config="item.config"
             style="width: 100%; height: 100%;"></component>
           <h4 v-else>哇咔咔</h4>
         </div>
@@ -43,7 +44,7 @@ export default {
     },
     height: {
       default () {
-        return 50
+        return 500
       },
       type: [String, Number]
     },

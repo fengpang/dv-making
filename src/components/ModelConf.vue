@@ -56,13 +56,22 @@
         <el-tab-pane label="图表配置" name="second">
           <el-form v-if="currentItem.type === 'col'" :model="currentItem.config" ref="currentItem" label-width="100px">
               <el-form-item label="线颜色" prop="name">
-                <el-input v-model="currentItem.config.color" placeholder="线颜色"></el-input>
+                <el-color-picker v-model="currentItem.config.color"></el-color-picker>
+              </el-form-item>
+              <el-form-item label="字号大小" prop="name">
+                <el-input v-model="currentItem.config.fontSize" placeholder="字号大小"></el-input>
               </el-form-item>
               <el-form-item label="y轴单位" prop="name">
                 <el-input v-model="currentItem.config.unit" placeholder="单位"></el-input>
               </el-form-item>
               <el-form-item label="坐标系位置" prop="name">
                 <el-input v-model="currentItem.config.grid" placeholder="坐标系位置"></el-input>
+              </el-form-item>
+              <el-form-item label="图例" prop="name">
+                <el-switch v-model="currentItem.config.legendVisible"></el-switch>
+              </el-form-item>
+              <el-form-item label="滚动条" prop="name">
+                <el-switch v-model="currentItem.config.dataroomVisible"></el-switch>
               </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -86,7 +95,7 @@ export default {
   },
   methods: {
     addCol (target) {
-      target.push({span: 12, type: 'col', config: {}})
+      target.push({span: 12, type: 'col', config: {}, panelName: 'DvPanel'})
     },
     delCol (target, item) {
       let index = target.indexOf(item)

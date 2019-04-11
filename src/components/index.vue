@@ -3,6 +3,15 @@
     <PageConf :template="template"></PageConf>
     <MainView :template="template" v-model="currentItem"></MainView>
     <ModelConf :current-item="currentItem"></ModelConf>
+    <el-button @click.native="dialogVisible = true">预览</el-button>
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%">
+  <PreView :template="template"></PreView>
+  <span slot="footer" class="dialog-footer">
+  </span>
+</el-dialog>
   </el-row>
 </template>
 
@@ -10,10 +19,12 @@
 import PageConf from './PageConf'
 import ModelConf from './ModelConf'
 import MainView from './MainView'
+import PreView from './Preview'
 
 export default {
   data () {
     return {
+      dialogVisible: false,
       template: {
         width: 1000,
         height: 800,
@@ -26,7 +37,8 @@ export default {
   components: {
     PageConf,
     ModelConf,
-    MainView
+    MainView,
+    PreView
   }
 }
 </script>

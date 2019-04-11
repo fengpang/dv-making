@@ -46,7 +46,7 @@ export default {
         type: 'row',
         dis: 0,
         rowDis: 0,
-        height: 50,
+        height: 300,
         name: 'Grid',
         config: {},
         columns: [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]
