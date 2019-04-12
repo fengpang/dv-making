@@ -29,6 +29,7 @@ export default {
         width: 1000,
         height: 800,
         bgc: 'pink',
+        config: {},
         components: []
       },
       currentItem: {}

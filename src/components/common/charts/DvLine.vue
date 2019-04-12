@@ -9,14 +9,6 @@
 export default {
   name: 'DvLine',
   props: {
-    // dashed: String,
-    // url: String,
-    // color: {
-    //   type: String,
-    //   default () {
-    //     return 'red'
-    //   }
-    // },
     unit: {
       type: String,
       default () {
@@ -50,7 +42,6 @@ export default {
     },
     options () {
       let result = this.dealData(this.data)
-      console.log(this.dataroomVisible)
       let options = {
         color: this.config.color || 'pink',
         legend: Object.assign({show: this.config.legendVisible}, this.legendData),
@@ -89,7 +80,7 @@ export default {
           boundaryGap: false,
           axisLine: {
             lineStyle: {
-              color: 'rgba(0, 255, 238, 1)'
+              color: this.config.axisColor || 'rgba(0, 255, 238, 1)'
             },
             symbolSize: 8,
             symbol: ['none', 'arrow']
@@ -120,14 +111,14 @@ export default {
         yAxis: {
           type: 'value',
           name: this.config.unit || '万元',
-          nameGap: this.nameGap,
+          nameGap: this.config.nameGap,
           nameTextStyle: {
             color: '#fff',
             fontSize: this.config.fontSize || 12
           },
           axisLine: {
             lineStyle: {
-              color: 'rgba(0, 255, 238, 1)'
+              color: this.config.axisColor || 'rgba(0, 255, 238, 1)'
             },
             symbolSize: 8,
             symbol: ['none', 'arrow']
@@ -160,6 +151,7 @@ export default {
     dealData (data) {
       let xData = []
       let series = []
+      let dashed = this.config.dashed ? 'dashed' : 'solid'
       // let opacity = this.areaStyle ? 1 : 0
       let areaStyle = this.areaStyle || ['rgba(193,58,226,0.53)', 'rgba(109,79,239,0.53)']
       for (let key in data) {
@@ -188,7 +180,8 @@ export default {
             opacity: 1
           },
           animationDelay: 500,
-          lineStyle: {type: this.dashed}
+          smooth: this.config.smooth,
+          lineStyle: {type: dashed}
         })
       }
       return {xData, series}
