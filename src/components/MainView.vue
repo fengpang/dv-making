@@ -67,7 +67,7 @@ export default {
      border: 1px solid black;
    }
    .active {
-     background: #6dc583;
+     border: 2px solid red;
    }
    .row {
      &:hover{

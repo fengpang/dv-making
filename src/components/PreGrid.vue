@@ -4,7 +4,6 @@
       <el-col class="cols"
         v-for="(item, index) in columns"
         :key="index"
-        @click.native="slectCol(item)"
         :style="{paddingLeft: `${+dis/2}px`, paddingRight: `${+dis/2}px`, backgroundColor: item.bc}"
         :span="+item.span">
         <div class="item" :class="{active: currentItem === item}">
@@ -51,11 +50,6 @@ export default {
     components: Array,
     currentItem: Object
   },
-  methods: {
-    slectCol (item) {
-      this.$emit('active', item)
-    }
-  },
   components: {
     Custom
   }
@@ -64,7 +58,6 @@ export default {
 
 <style lang="less" scoped>
   .item {
-    border: 1px dashed rgb(17, 17, 17);
     height: 100%;
     width: 100%;
     display: flex;
@@ -74,13 +67,5 @@ export default {
   }
   .cols {
     height: 100%;
-    &:hover {
-      .item {
-        background-color: rgba(109, 197, 131, 0.4);
-      }
-    }
-  }
-  .active {
-    border: 2px solid rgb(236, 74, 74);
   }
 </style>
