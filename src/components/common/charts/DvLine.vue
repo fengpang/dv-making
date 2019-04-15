@@ -152,8 +152,7 @@ export default {
       let xData = []
       let series = []
       let dashed = this.config.dashed ? 'dashed' : 'solid'
-      // let opacity = this.areaStyle ? 1 : 0
-      let areaStyle = this.areaStyle || ['rgba(193,58,226,0.53)', 'rgba(109,79,239,0.53)']
+      let opacity = this.config.areaStyle ? 1 : 0
       for (let key in data) {
         let itemData = data[key].map(({value}) => value)
         let itemXData = data[key].map(({name}) => name)
@@ -172,12 +171,12 @@ export default {
               x2: 0,
               y2: 1,
               colorStops: [{
-                offset: 0, color: areaStyle[0] // 0% 处的颜色
+                offset: 0, color: this.config.topColor || 'rgba(193,58,226,0.53)' // 0% 处的颜色
               }, {
-                offset: 1, color: areaStyle[1] // 100% 处的颜色
+                offset: 1, color: this.config.bototmColor || 'rgba(109,79,239,0.53)' // 100% 处的颜色
               }]
             },
-            opacity: 1
+            opacity
           },
           animationDelay: 500,
           smooth: this.config.smooth,
