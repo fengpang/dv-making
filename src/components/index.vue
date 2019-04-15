@@ -19,7 +19,7 @@
 import PageConf from './PageConf'
 import ModelConf from './ModelConf'
 import MainView from './MainView'
-import PreView from './Preview'
+import PreView from './preview/Preview'
 
 export default {
   data () {

@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import Custom from './common/charts/Custom'
 export default {
   props: {
     columns: {
@@ -55,9 +54,6 @@ export default {
     slectCol (item) {
       this.$emit('active', item)
     }
-  },
-  components: {
-    Custom
   }
 }
 </script>

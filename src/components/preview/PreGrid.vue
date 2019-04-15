@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import Custom from './common/charts/Custom'
 export default {
   props: {
     columns: {
@@ -49,9 +48,6 @@ export default {
     },
     components: Array,
     currentItem: Object
-  },
-  components: {
-    Custom
   }
 }
 </script>
