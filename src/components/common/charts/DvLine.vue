@@ -9,12 +9,6 @@
 export default {
   name: 'DvLine',
   props: {
-    unit: {
-      type: String,
-      default () {
-        return '万人'
-      }
-    },
     data: {
       type: Object,
       default () {
@@ -27,12 +21,6 @@ export default {
       type: Object,
       default () {
         return {}
-      }
-    },
-    grid: {
-      type: Object,
-      default () {
-        return { bottom: 80, left: 0, right: 27, top: 80, containLabel: true, backgroundColor: 'gary' }
       }
     }
   },
@@ -47,7 +35,7 @@ export default {
         legend: Object.assign({show: this.config.legendVisible}, this.legendData),
         tooltip: {
           trigger: 'axis',
-          formatter: `{c}${this.unit}`
+          formatter: `{c}${this.config.unit}`
         },
         dataZoom: [
           {

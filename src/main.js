@@ -9,9 +9,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import element from 'element-ui'
 import allCharts from './components/common/charts'
 import draggable from 'vuedraggable'
+import DvPanel from './components/common/DvPanel'
 
 Vue.component('chart', charts)
 Vue.component('draggable', draggable)
+Vue.component('DvPanel', DvPanel)
 
 allCharts.forEach(element => {
   Vue.component(element.name, element)

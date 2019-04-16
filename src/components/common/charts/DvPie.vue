@@ -16,11 +16,16 @@ export default {
     roseType: String,
     radius: Array,
     url: String,
-    formatter: Function
+    config: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
   },
   computed: {
     option () {
-      let formatter = this.formatter || `{b} : <br/>{c}${this.unit} ({d}%)`
+      let formatter = `{b} : <br/>{c}${this.config.unit || '万元'} ({d}%)`
       return {
         tooltip: {
           trigger: 'item',

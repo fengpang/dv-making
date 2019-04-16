@@ -1,6 +1,6 @@
 <template>
     <!-- 主体 -->
-    <el-col :span="16" class="view" :style="{width: `${template.width}px`, height: `${template.height}px`, backgroundColor: template.bgImg || template.bgc}">
+    <el-col :span="16" class="view" :style="{width: `1000px`, height: `800px`, backgroundColor: template.bgImg || template.bgc}">
       <draggable
         :list="template.components"
         group="people"

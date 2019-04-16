@@ -23,6 +23,7 @@ export default {
 <style lang="less" scoped>
   .panel {
     width: 100%;
+    height: 100%;
     padding: 19px 10px;
     box-sizing: border-box;
     background: url("../../assets/box-bg.png") no-repeat;

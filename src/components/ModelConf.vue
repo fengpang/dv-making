@@ -61,17 +61,21 @@
 </template>
 
 <script>
-import { LineConf } from './chartConfigs/index'
+import { LineConf, BarConf, PieConf } from './chartConfigs/index'
 export default {
   data () {
     return {
       activeName: 'first',
       options: [
-        {label: '柱状图', value: 'Custom'},
-        {label: '折线图', value: 'DvLine'}
+        {label: '3D柱状图', value: 'Custom'},
+        {label: '折线图', value: 'DvLine'},
+        {label: '柱状图', value: 'DvBar'},
+        {label: '饼图', value: 'DvPie'}
       ],
       configs: {
-        DvLine: 'LineConf'
+        DvLine: 'LineConf',
+        DvBar: 'BarConf',
+        DvPie: 'PieConf'
       }
     }
   },
@@ -88,7 +92,9 @@ export default {
     }
   },
   components: {
-    LineConf
+    LineConf,
+    BarConf,
+    PieConf
   }
 }
 </script>
