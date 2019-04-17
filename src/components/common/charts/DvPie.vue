@@ -3,43 +3,53 @@
   <chart :manual-update="false"
          class="datav-chart"
          ref="chart"
-         @mouseover="clearInterval"
-         @mouseout="addInterval(0)"
          :options="option"/>
 </template>
 
 <script>
 export default {
+  name: 'DvPie',
   props: {
-    color: Array,
-    showPercent: Boolean,
-    roseType: String,
-    radius: Array,
     url: String,
+    data: {
+      type: Array,
+      default () {
+        return [
+          {name: '品类A', value: 110},
+          {name: '品类B', value: 200}
+        ]
+      }
+    },
     config: {
       type: Object,
       default () {
-        return {}
+        return {
+          radius: ['50%', '50%'],
+          roseType: true,
+          unit: '万元',
+          color: ['red', 'pink'],
+          center: ['50%', '50%']
+        }
       }
     }
   },
   computed: {
     option () {
-      let formatter = `{b} : <br/>{c}${this.config.unit || '万元'} ({d}%)`
+      let formatter = `{b} : <br/>{c}${this.config.unit} ({d}%)`
       return {
         tooltip: {
           trigger: 'item',
-          formatter: formatter
+          formatter
         },
         series: [
           {
             name: '访问来源',
             type: 'pie',
-            radius: this.radius,
+            radius: this.config.radius,
             color: this.color,
-            center: ['50%', '50%'],
+            center: this.config.center,
             roseType: this.roseType,
-            data: this.localData || this.data,
+            data: this.data,
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,

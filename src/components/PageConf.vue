@@ -16,6 +16,15 @@
             <el-form-item label="自定义背景图" prop="name">
               <el-input v-model="template.bgImg"></el-input>
             </el-form-item>
+            <el-form-item label="模块容器" prop="name">
+              <el-select v-model="template.panel">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"></el-option>
+              </el-select>
+            </el-form-item>
           <draggable
             :list="rows"
             :group="{ name: 'people', pull: 'clone', put: false }"
@@ -69,7 +78,11 @@ export default {
         name: 'Grid',
         config: {},
         columns: [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]
-      }]
+      }],
+      options: [
+        {label: '无外框', value: 'DefaultPanel'},
+        {label: '1', value: 'DvPanel'}
+      ]
     }
   },
   methods: {

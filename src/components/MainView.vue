@@ -18,6 +18,7 @@
           :currentItem="currentItem"
           :height="item.height"
           :rowDis="item.rowDis"
+          :template="template"
           :dis="item.dis"></component>
           <div class="icons">
             <i class="el-icon-delete delete-icon" @click="delCol(template.components, item)"></i>

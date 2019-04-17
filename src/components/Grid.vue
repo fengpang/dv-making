@@ -8,14 +8,14 @@
         :style="{paddingLeft: `${+dis/2}px`, paddingRight: `${+dis/2}px`, backgroundColor: item.bc}"
         :span="+item.span">
         <div class="item" :class="{active: currentItem === item}">
-          <dv-panel>
+          <component :is="item.panel || template.panel" v-if="template.panel">
             <component
               v-if="item.component"
               :is="item.component"
               :config="item.config"
               style="width: 100%; height: 100%;"></component>
               <h4 v-else>哇咔咔</h4>
-          </dv-panel>
+          </component>
         </div>
       </el-col>
     </el-row>
@@ -25,6 +25,7 @@
 <script>
 export default {
   props: {
+    template: Object,
     columns: {
       default () {
         return [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]

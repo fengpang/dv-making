@@ -157,9 +157,9 @@ export default {
                 x2: 0,
                 y2: 1,
                 colorStops: [{
-                  offset: 0, color: this.config.topColor // 0% 处的颜色
+                  offset: 0, color: this.config.topColor || 'pink' // 0% 处的颜色
                 }, {
-                  offset: 1, color: this.config.bottomColor // 100% 处的颜色
+                  offset: 1, color: this.config.bottomColor || 'pink' // 100% 处的颜色
                 }]
               }
             }

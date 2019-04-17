@@ -33,6 +33,15 @@
                   </el-option>
                 </el-select>
               </el-form-item>
+              <el-form-item label="外框" prop="name">
+              <el-select v-model="currentItem.panel">
+                <el-option
+                  v-for="item in panels"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"></el-option>
+              </el-select>
+              </el-form-item>
               <el-form-item label="标题" prop="name">
                 <el-input v-model="currentItem.title" placeholder="模块标题"></el-input>
               </el-form-item>
@@ -76,7 +85,11 @@ export default {
         DvLine: 'LineConf',
         DvBar: 'BarConf',
         DvPie: 'PieConf'
-      }
+      },
+      panels: [
+        {label: '无外框', value: 'DefaultPanel'},
+        {label: '1', value: 'DvPanel'}
+      ]
     }
   },
   props: {

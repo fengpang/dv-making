@@ -13,6 +13,7 @@
 <script>
 import 'animate.css'
 export default {
+  name: 'DvPanel',
   props: {
     title: String,
     rLable: String
