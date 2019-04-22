@@ -30,7 +30,7 @@
             :group="{ name: 'people', pull: 'clone', put: false }"
             :clone="deepCoy"
             ghost-class="ghost">
-              <el-button>添加栅格</el-button>
+              <el-button class="move">添加栅格</el-button>
           </draggable>
             <el-button @click="dialogVisible = true">查看数据</el-button>
             <el-row>
@@ -112,6 +112,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.move {
+  &:hover {
+    cursor: move;
+  }
+}
 </style>
