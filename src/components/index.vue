@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <PageConf :template="template"></PageConf>
+    <PageConf :template="template" @increasePage="increasePage"></PageConf>
     <MainView :template="template" v-model="currentItem"></MainView>
     <ModelConf :current-item="currentItem"></ModelConf>
     <el-button @click.native="dialogVisible = true">预览</el-button>
@@ -28,11 +28,20 @@ export default {
       template: {
         width: 1000,
         height: 800,
+        currentPage: 0,
+        panel: 'DefaultPanel',
         bgc: 'pink',
         config: {},
-        components: []
+        pages: [
+          {name: '首页', components: []}
+        ]
       },
       currentItem: {}
+    }
+  },
+  methods: {
+    increasePage (name) {
+      this.template.pages.push({components: [], name})
     }
   },
   components: {

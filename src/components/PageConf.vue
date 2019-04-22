@@ -33,6 +33,17 @@
               <el-button>添加栅格</el-button>
           </draggable>
             <el-button @click="dialogVisible = true">查看数据</el-button>
+            <el-row>
+              <el-col :span="12">
+                <el-input v-model="pagename" placeholder="页面名称" @keyup.enter.native="increasePage"></el-input>
+              </el-col>
+              <el-col :span="12">
+                <el-button @click="increasePage">新增页面</el-button>
+              </el-col>
+            </el-row>
+            <div>
+              <el-button v-for="(item, index) in template.pages" :key="index" @click="template.currentPage = index">{{ item.name || index + 1 }}</el-button>
+            </div>
           </el-form>
           <!-- JSON信息 -->
           <el-dialog
@@ -70,12 +81,12 @@ export default {
     return {
       activeName: 'first',
       dialogVisible: false,
+      pagename: '',
       rows: [{
         type: 'row',
         dis: 0,
         rowDis: 0,
         height: 300,
-        name: 'Grid',
         config: {},
         columns: [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]
       }],
@@ -88,6 +99,11 @@ export default {
   methods: {
     deepCoy (item) {
       return JSON.parse(JSON.stringify(item))
+    },
+    increasePage () {
+      this.template.currentPage = this.template.pages.length - 1
+      this.$emit('increasePage', this.pagename)
+      this.pagename = ''
     }
   },
   props: {

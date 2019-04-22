@@ -2,16 +2,15 @@
     <!-- 主体 -->
     <el-col :span="16" class="view" :style="{width: `1000px`, height: `800px`, backgroundColor: template.bgImg || template.bgc}">
       <draggable
-        :list="template.components"
+        :list="template.pages[template.currentPage].components"
         group="people"
         ghost-class="ghost">
       <div
-        v-for="(item, index) in template.components"
+        v-for="(item, index) in template.pages[template.currentPage].components"
         :key="index"
         class="row"
         style="width: 100%; position: relative;">
-        <component
-          :is="item.name"
+        <grid
           @active="activeChange"
           :class="{active: currentItem === item}"
           :columns="item.columns"
@@ -19,7 +18,7 @@
           :height="item.height"
           :rowDis="item.rowDis"
           :template="template"
-          :dis="item.dis"></component>
+          :dis="item.dis"></grid>
           <div class="icons">
             <i class="el-icon-delete delete-icon" @click="delCol(template.components, item)"></i>
             <i class="el-icon-success success-icon" @click="selctRow(item)"></i>
