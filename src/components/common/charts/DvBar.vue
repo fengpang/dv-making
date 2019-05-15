@@ -67,15 +67,15 @@ export default {
           type: 'category',
           axisLine: {
             lineStyle: {
-              color: this.config.axisColor || 'rgba(0, 255, 238, 1)'
+              color: this.config.axisColor || this.$config.axisColor || 'rgba(0, 255, 238, 1)'
             },
             symbolSize: 8,
             symbol: ['none', 'arrow']
           },
           axisLabel: {
             padding: [0, 0, 0, 0],
-            color: '#fff',
-            fontSize: this.config.fontSize || 12,
+            color: this.$config.labelColor || '#fff',
+            fontSize: this.config.fontSize || this.$config.fontSize || 12,
             interval: 0
           },
           splitLine: {
@@ -100,12 +100,12 @@ export default {
           name: this.config.unit || '万元',
           nameGap: this.config.nameGap,
           nameTextStyle: {
-            color: '#fff',
+            color: this.config.labelColor || this.$config.labelColor || '#fff',
             fontSize: this.config.fontSize || 12
           },
           axisLine: {
             lineStyle: {
-              color: this.config.axisColor || 'rgba(0, 255, 238, 1)'
+              color: this.config.axisColor || this.$config.axisColor || 'rgba(0, 255, 238, 1)'
             },
             symbolSize: 8,
             symbol: ['none', 'arrow']
@@ -117,8 +117,8 @@ export default {
             }
           },
           axisLabel: {
-            color: '#fff',
-            fontSize: this.config.fontSize || 12
+            color: this.$config.labelColor || '#fff',
+            fontSize: this.config.fontSize || this.$config.fontSize || 12
           },
           axisTick: {
             show: false,
@@ -168,6 +168,14 @@ export default {
         })
       }
       return {xData, series}
+    }
+  },
+  watch: {
+    $config: {
+      deep: true,
+      handler () {
+        console.log(this.$config, 'bar')
+      }
     }
   }
 }

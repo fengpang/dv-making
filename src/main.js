@@ -12,13 +12,12 @@ import draggable from 'vuedraggable'
 import panels from './components/panels/index'
 Vue.component('chart', charts)
 Vue.component('draggable', draggable)
-allCharts.forEach(element => {
-  Vue.component(element.name, element)
-})
+
 panels.forEach(element => {
   Vue.component(element.name, element)
 })
 
+Vue.use(allCharts)
 Vue.use(element)
 
 Vue.config.productionTip = false

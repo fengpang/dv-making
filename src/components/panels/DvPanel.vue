@@ -3,8 +3,10 @@
        :style="{ height }"
        :class="animates[animateIndex]"> -->
   <div class="panel animated">
-    <slot name="title" class="header">
-      <h4 class="title">{{ title }}</h4>
+    <slot name="title">
+      <div class="header">
+        <h4 v-if="title" class="title">{{ title }}</h4>
+      </div>
     </slot>
     <slot/>
   </div>
@@ -35,6 +37,7 @@ export default {
       display: flex;
       justify-content: space-between;
       .title {
+        margin: 0;
         &:before {
           content: ' ';
           width: 4px;

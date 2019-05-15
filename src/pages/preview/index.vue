@@ -18,11 +18,22 @@
 <script>
 import Grid from './PreGrid'
 export default {
-  props: {
-    template: Object
+  data () {
+    return {
+      template: {}
+    }
   },
   components: {
     Grid
+  },
+  methods: {
+    getStorage (name) {
+      return JSON.parse(localStorage.getItem(name))
+    }
+  },
+  created () {
+    this.template = this.getStorage('template') || this.template
+    console.log(this.template)
   }
 }
 </script>

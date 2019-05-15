@@ -20,7 +20,7 @@
           :template="template"
           :dis="item.dis"></grid>
           <div class="icons">
-            <i class="el-icon-delete delete-icon" @click="delCol(template.components, item)"></i>
+            <i class="el-icon-delete delete-icon" @click="delCol(template.pages[template.currentPage].components, item)"></i>
             <i class="el-icon-success success-icon" @click="selctRow(item)"></i>
           </div>
       </div>

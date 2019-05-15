@@ -8,7 +8,7 @@
         :style="{paddingLeft: `${+dis/2}px`, paddingRight: `${+dis/2}px`, backgroundColor: item.bc}"
         :span="+item.span">
         <div class="item" :class="{active: currentItem === item}">
-          <component :is="item.panel || template.panel">
+          <component :is="item.panel || template.panel" :title="item.title">
             <component
               v-if="item.component"
               :is="item.component"

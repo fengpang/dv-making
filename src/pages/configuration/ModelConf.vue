@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { LineConf, BarConf, PieConf } from './chartConfigs/index'
+import { LineConf, BarConf, PieConf } from '@/components/chartConfigs/index'
 export default {
   data () {
     return {
