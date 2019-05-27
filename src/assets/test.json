@@ -1,0 +1,99 @@
+{
+  "width": "1920",
+  "height": "1080",
+  "currentPage": 2,
+  "panel": "DefaultPanel",
+  "bgc": "#48ABD6",
+  "config": {
+    "fontSize": 12,
+    "labelColor": "#EB6B6B",
+    "axisColor": "#6CBAB4"
+  },
+  "pages": [
+    {
+      "name": "首页",
+      "components": [
+        {
+          "type": "row",
+          "dis": 0,
+          "rowDis": 0,
+          "height": 300,
+          "config": {},
+          "columns": [
+            {
+              "span": 12,
+              "type": "col",
+              "config": {},
+              "component": "DvLine"
+            },
+            {
+              "span": 12,
+              "type": "col",
+              "config": {},
+              "component": "DvBar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "row",
+          "dis": 0,
+          "rowDis": 0,
+          "height": 300,
+          "config": {},
+          "columns": [
+            {
+              "span": 12,
+              "type": "col",
+              "config": {},
+              "component": "DvLine"
+            },
+            {
+              "span": 12,
+              "type": "col",
+              "config": {},
+              "component": "DvBar"
+            }
+          ]
+        }
+      ],
+      "name": ""
+    },
+    {
+      "components": [
+        {
+          "type": "row",
+          "dis": 0,
+          "rowDis": 0,
+          "height": 300,
+          "config": {},
+          "columns": [
+            {
+              "span": "8",
+              "type": "col",
+              "config": {},
+              "component": "DvLine"
+            },
+            {
+              "span": "8",
+              "type": "col",
+              "config": {},
+              "component": "Custom"
+            },
+            {
+              "span": "8",
+              "type": "col",
+              "config": {},
+              "panelName": "DvPanel",
+              "component": "DvLine"
+            }
+          ]
+        }
+      ],
+      "name": "third"
+    }
+  ]
+}

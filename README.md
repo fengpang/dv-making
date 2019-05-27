@@ -1,7 +1,7 @@
 # chart_test
 
 > A Vue.js project
-
+test
 ## Build Setup
 
 ``` bash

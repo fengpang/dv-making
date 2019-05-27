@@ -37,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+  .view {
+    overflow: hidden;
+  }
+</style>

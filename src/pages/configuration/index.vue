@@ -11,6 +11,7 @@
 import PageConf from './PageConf'
 import ModelConf from './ModelConf'
 import MainView from './MainView'
+import ruoter from 'vue-router'
 
 export default {
   data () {
@@ -35,6 +36,8 @@ export default {
       this.template.pages.push({components: [], name})
     },
     preview () {
+      this.addRoute()
+      console.log(this.$router)
       window.open('http://localhost:8080/#/preview')
     },
     setStorage (name, data) {
@@ -42,6 +45,15 @@ export default {
     },
     clearStorage () {
       window.onbeforeunload = () => localStorage.clear()
+    },
+    addRoute () {
+      ruoter.addRoutes([
+        {
+          name: 'preview',
+          path: '/preview',
+          component: () => import('@/pages/preview')
+        }
+      ])
     }
   },
   watch: {

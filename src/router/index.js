@@ -9,11 +9,6 @@ export default new Router({
       path: '/',
       name: 'configuration',
       component: () => import('@/pages/configuration')
-    },
-    {
-      path: '/preview',
-      name: 'preview',
-      component: () => import('@/pages/preview')
     }
   ]
 })
