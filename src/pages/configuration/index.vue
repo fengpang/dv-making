@@ -17,12 +17,13 @@ export default {
     return {
       dialogVisible: false,
       template: {
-        width: 1000,
-        height: 800,
+        pageConf: {
+          width: 1000,
+          height: 800,
+          panel: 'DefaultPanel',
+          bgc: 'pink'
+        },
         currentPage: 0,
-        panel: 'DefaultPanel',
-        bgc: 'pink',
-        config: {},
         pages: [
           {name: '首页', components: []}
         ]

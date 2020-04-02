@@ -1,28 +1,19 @@
 <template>
     <!-- 主体 -->
-    <el-col :span="16" class="view" :style="{width: `1000px`, height: `800px`, backgroundColor: template.bgImg || template.bgc}">
+    <el-col :span="16" class="view" ref="view" :style="{position: 'relative', width: `1000px`, height: `800px`, backgroundColor: pageConf.bgImg || pageConf.bgc}">
       <draggable
         :list="template.pages[template.currentPage].components"
-        group="people"
+         @end="onEnd"
+         @start="onStart"
+         style="height: 100%;"
+        group="components"
         ghost-class="ghost">
       <div
         v-for="(item, index) in template.pages[template.currentPage].components"
         :key="index"
         class="row"
         style="width: 100%; position: relative;">
-        <grid
-          @active="activeChange"
-          :class="{active: currentItem === item}"
-          :columns="item.columns"
-          :currentItem="currentItem"
-          :height="item.height"
-          :rowDis="item.rowDis"
-          :template="template"
-          :dis="item.dis"></grid>
-          <div class="icons">
-            <i class="el-icon-delete delete-icon" @click="delCol(template.pages[template.currentPage].components, item)"></i>
-            <i class="el-icon-success success-icon" @click="selctRow(item)"></i>
-          </div>
+        <h1 :style="getStyle(item.style)"></h1>
       </div>
       </draggable>
     </el-col>
@@ -32,6 +23,11 @@
 import Grid from './Grid'
 
 export default {
+  data () {
+    return {
+      offset: {}
+    }
+  },
   components: {
     Grid
   },
@@ -49,11 +45,37 @@ export default {
     delCol (target, item) {
       let index = target.indexOf(item)
       this.$delete(target, index)
+    },
+    onEnd (event) {
+      const {left, top} = this.$refs.view.$el.getBoundingClientRect()
+      const {newIndex, originalEvent} = event
+      const {clientX, clientY} = originalEvent
+      this.$set(this.template.pages[this.template.currentPage].components[newIndex], 'style', {left: `${clientX - left + this.offset.x}px`, top: `${clientY - top + this.offset.y}px`})
+    },
+    getStyle ({left, top} = {left: 0, top: 0}) {
+      return {
+        position: 'absolute',
+        left,
+        top,
+        width: '100px',
+        height: '100px',
+        background: 'purple',
+        transition: 'all .2s'
+      }
+    },
+    onStart (event) {
+      const {originalEvent} = event
+      const {clientX, clientY} = originalEvent
+      const {left, top} = event.item.children[0].getBoundingClientRect()
+      this.offset = {x: left - clientX, y: top - clientY}
     }
   },
   model: {
     prop: 'currentItem',
     event: 'currentChange'
+  },
+  computed: {
+    pageConf: () => (this.template && this.template.pageConf) || {}
   }
 }
 </script>

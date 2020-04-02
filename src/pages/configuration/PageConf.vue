@@ -26,8 +26,8 @@
               </el-select>
             </el-form-item>
           <draggable
-            :list="rows"
-            :group="{ name: 'people', pull: 'clone', put: false }"
+            :list="components"
+            :group="{ name: 'components', pull: 'clone', put: false }"
             :clone="deepCoy"
             ghost-class="ghost">
               <el-button class="move">添加栅格</el-button>
@@ -82,13 +82,8 @@ export default {
       activeName: 'first',
       dialogVisible: false,
       pagename: '',
-      rows: [{
-        type: 'row',
-        dis: 0,
-        rowDis: 0,
-        height: 300,
-        config: {},
-        columns: [{span: 12, type: 'col', config: {}}, {span: 12, type: 'col', config: {}}]
+      components: [{
+        name: 'DvBar'
       }],
       options: [
         {label: '无外框', value: 'DefaultPanel'},
