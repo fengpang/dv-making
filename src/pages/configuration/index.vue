@@ -3,7 +3,7 @@
     <PageConf :template="template" @increasePage="increasePage"></PageConf>
     <MainView :template="template" v-model="currentItem"></MainView>
     <ModelConf :current-item="currentItem"></ModelConf>
-    <el-button @click.native="preview">预览</el-button>
+    <!-- <el-button @click.native="preview">预览</el-button> -->
   </el-row>
 </template>
 
@@ -28,7 +28,7 @@ export default {
           {name: '首页', components: []}
         ]
       },
-      currentItem: {}
+      currentItem: {style: {}}
     }
   },
   methods: {
