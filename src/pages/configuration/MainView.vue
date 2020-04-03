@@ -59,8 +59,7 @@ export default {
         top,
         width: '100px',
         height: '100px',
-        background: 'purple',
-        transition: 'all .2s'
+        background: 'purple'
       }
     },
     onStart (event) {
